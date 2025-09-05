@@ -1,0 +1,146 @@
+/* 
+ * 全局样式文件
+ * 包含Tailwind基础样式、自定义工具类和全局样式定义
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 3px;
+}
+
+/* Dark theme */
+.dark {
+  color-scheme: dark;
+}
+
+/* Light theme */
+.light {
+  color-scheme: light;
+}
+
+/* Transition classes */
+.transition-bg {
+  transition: background-color 0.2s ease;
+}
+
+.transition-all {
+  transition: all 0.2s ease;
+}
+
+/* Layout components */
+.layout-container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 64px 1fr;
+  grid-template-areas:
+    "header header"
+    "sidebar main";
+  height: 100vh;
+  transition: grid-template-columns 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .layout-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main";
+  }
+}
+
+.layout-container.sidebar-collapsed {
+  grid-template-columns: 64px 1fr;
+}
+
+.header {
+  grid-area: header;
+  z-index: 10;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  z-index: 5;
+}
+
+.main-content {
+  min-height: calc(100vh - 64px);
+  grid-area: main;
+  overflow-y: auto;
+  padding: 1rem;
+  @media (min-width: 768px) {
+    padding: 1.5rem;
+  }
+}
+
+/* Card component styles */
+.card {
+  @apply rounded-xl shadow-sm border transition-all hover:shadow-md;
+}
+
+/* Button styles */
+.btn {
+  @apply px-4 py-2 rounded-lg font-medium transition-all flex items-center justify-center gap-2;
+}
+
+.btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700;
+}
+
+.btn-outline {
+  @apply border border-gray-300 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800;
+}
+
+/* Input styles */
+.input {
+  @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+/* Table styles */
+.table {
+  @apply w-full border-collapse;
+}
+
+.table th {
+  @apply px-4 py-3 text-left font-semibold;
+}
+
+.table td {
+  @apply px-4 py-3 border-t;
+}
+
+/* Menu item styles */
+.menu-item {
+  @apply flex items-center gap-3 px-4 py-3 rounded-lg transition-all cursor-pointer;
+}
+
+.menu-item.active {
+  @apply bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 font-medium;
+}
